@@ -1,74 +1,12 @@
 /* Login Container */
 .login-container {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%);
   position: relative;
   overflow: hidden;
-}
-
-/* Decorative Side */
-.decorative-side {
-  position: relative;
-  padding: 2rem;
-}
-
-.decorative-elements {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.shape {
-  position: absolute;
-  border: 2px solid #2d2d2d;
-  border-radius: 4px;
-}
-
-.shape-1 {
-  width: 80px;
-  height: 60px;
-  top: 15%;
-  left: 20%;
-  transform: rotate(-5deg);
-}
-
-.shape-2 {
-  width: 60px;
-  height: 45px;
-  top: 40%;
-  left: 10%;
-  border-radius: 50%;
-}
-
-.shape-3 {
-  width: 100px;
-  height: 80px;
-  bottom: 25%;
-  left: 25%;
-  transform: rotate(10deg);
-  background: rgba(255, 200, 100, 0.1);
-}
-
-.shape-4 {
-  width: 40px;
-  height: 40px;
-  bottom: 15%;
-  left: 15%;
-  background: #f5c882;
-  border: none;
-  border-radius: 8px;
-}
-
-.shape-5 {
-  width: 20px;
-  height: 200px;
-  top: 20%;
-  right: 10%;
-  border: none;
-  background: linear-gradient(to bottom, transparent, #2d2d2d 20%, #2d2d2d 80%, transparent);
-  width: 2px;
 }
 
 /* Form Side */
@@ -87,7 +25,7 @@
   padding: 3rem;
   width: 100%;
   max-width: 420px;
-  box-shadow: 
+  box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.05),
     0 10px 15px -3px rgba(0, 0, 0, 0.05),
     0 20px 25px -5px rgba(0, 0, 0, 0.03);
@@ -262,7 +200,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Social Login */
@@ -345,179 +285,7 @@
   color: #999;
 }
 
-/* Illustration Container */
-.illustration-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.illustration-wrapper {
-  position: relative;
-  width: 300px;
-  height: 300px;
-}
-
-.person-illustration {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* Cubes */
-.cube {
-  position: absolute;
-  background: #f5c882;
-  border-radius: 8px;
-}
-
-.cube::before {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #2d2d2d;
-  border-radius: 50%;
-}
-
-.cube-1 {
-  width: 60px;
-  height: 60px;
-  bottom: 20%;
-  right: 10%;
-  transform: rotate(-10deg);
-}
-
-.cube-1::before {
-  top: 10px;
-  left: 10px;
-}
-
-.cube-1::after {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #2d2d2d;
-  border-radius: 50%;
-  top: 10px;
-  right: 10px;
-}
-
-.cube-2 {
-  width: 50px;
-  height: 50px;
-  bottom: 40%;
-  right: 5%;
-}
-
-.cube-2::before {
-  top: 8px;
-  left: 8px;
-}
-
-.cube-3 {
-  width: 40px;
-  height: 40px;
-  top: 20%;
-  right: 20%;
-  transform: rotate(5deg);
-}
-
-.cube-3::before {
-  top: 6px;
-  left: 6px;
-}
-
-/* Person */
-.person {
-  position: absolute;
-  bottom: 30%;
-  left: 30%;
-}
-
-.head {
-  width: 40px;
-  height: 40px;
-  background: #f5e6d3;
-  border-radius: 50%;
-  border: 2px solid #2d2d2d;
-  position: relative;
-}
-
-.head::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: -5px;
-  width: 50px;
-  height: 30px;
-  background: #2d2d2d;
-  border-radius: 50% 50% 0 0;
-}
-
-.body {
-  width: 50px;
-  height: 60px;
-  background: #2d2d2d;
-  border-radius: 25px 25px 0 0;
-  margin-top: -10px;
-  margin-left: -5px;
-}
-
-.laptop {
-  position: absolute;
-  bottom: 25%;
-  left: 20%;
-  width: 80px;
-  height: 50px;
-  background: linear-gradient(135deg, #a8e6cf 0%, #88d4ab 100%);
-  border-radius: 8px;
-  border: 2px solid #2d2d2d;
-  transform: perspective(200px) rotateX(-10deg);
-}
-
-.laptop::before {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 5px;
-  width: 90px;
-  height: 8px;
-  background: #2d2d2d;
-  border-radius: 0 0 4px 4px;
-}
-
-/* Wavy Line Decoration */
-.decorative-side::after {
-  content: '';
-  position: absolute;
-  top: 30%;
-  right: 0;
-  width: 100px;
-  height: 200px;
-  border-right: 2px solid #2d2d2d;
-  border-radius: 0 100px 100px 0;
-}
-
 /* Responsive Styles */
-@media (max-width: 1024px) {
-  .login-container {
-    grid-template-columns: 1fr;
-  }
-
-  .decorative-side,
-  .illustration-container {
-    display: none;
-  }
-
-  .form-side {
-    min-height: 100vh;
-  }
-}
-
 @media (max-width: 480px) {
   .login-card {
     padding: 2rem 1.5rem;
