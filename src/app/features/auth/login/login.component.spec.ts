@@ -6,6 +6,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { signal } from '@angular/core';
 
 import { provideRouter } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('LoginComponent', () => {
     let component: LoginComponent;
@@ -16,7 +17,7 @@ describe('LoginComponent', () => {
         const authSpy = jasmine.createSpyObj('AuthService', ['signIn']);
 
         await TestBed.configureTestingModule({
-            imports: [LoginComponent, ReactiveFormsModule],
+            imports: [LoginComponent, ReactiveFormsModule, TranslateModule.forRoot()],
             providers: [
                 { provide: AuthService, useValue: authSpy },
                 provideRouter([])
@@ -41,7 +42,7 @@ describe('LoginComponent', () => {
     it('should show error modal when form is invalid on submit', () => {
         component.onSubmit();
         expect(component.showErrorModal()).toBeTrue();
-        expect(component.errorMessage()).toBe('Por favor, completa todos los campos correctamente.');
+        expect(component.errorMessage()).toBe('LOGIN.ERROR_MODAL.INVALID_FORM');
     });
 
     it('should call authService.signIn and navigate on success', fakeAsync(() => {

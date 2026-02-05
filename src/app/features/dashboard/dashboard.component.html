@@ -7,6 +7,12 @@
             </div>
             <div class="user-menu">
                 <div class="user-info">
+                    <div class="lang-switcher">
+                        <button (click)="changeLanguage('es')"
+                            [class.active]="translate.currentLang === 'es'">ES</button>
+                        <button (click)="changeLanguage('en')"
+                            [class.active]="translate.currentLang === 'en'">EN</button>
+                    </div>
                     <span class="user-email">{{ userEmail() }}</span>
                     <div class="user-avatar">
                         {{ getInitials() }}
@@ -19,7 +25,7 @@
                         <polyline points="16 17 21 12 16 7"></polyline>
                         <line x1="21" y1="12" x2="9" y2="12"></line>
                     </svg>
-                    <span>Cerrar Sesión</span>
+                    <span>{{ 'DASHBOARD.LOGOUT' | translate }}</span>
                 </button>
             </div>
         </div>
@@ -30,7 +36,7 @@
         @if (isLoading()) {
         <div class="loading-state">
             <div class="loading-spinner"></div>
-            <p>Cargando...</p>
+            <p>{{ 'DASHBOARD.LOADING' | translate }}</p>
         </div>
         } @else {
         <div class="welcome-section">
@@ -43,13 +49,12 @@
                     </svg>
                 </div>
                 <div class="welcome-content">
-                    <span class="greeting-text">{{ greeting() }}</span>
+                    <span class="greeting-text">{{ greeting() | translate }}</span>
                     <h1 class="welcome-title">
-                        ¡Bienvenido, <span class="user-name">{{ userName() }}</span>!
+                        {{ 'DASHBOARD.WELCOME' | translate:{ name: userName() } }}
                     </h1>
                     <p class="welcome-message">
-                        Has iniciado sesión correctamente en tu cuenta.
-                        Aquí podrás administrar tu perfil y acceder a todas las funcionalidades.
+                        {{ 'DASHBOARD.MESSAGE' | translate }}
                     </p>
                 </div>
             </div>
@@ -67,8 +72,8 @@
                         </svg>
                     </div>
                     <div class="stat-content">
-                        <span class="stat-label">Último acceso</span>
-                        <span class="stat-value">Hoy</span>
+                        <span class="stat-label">{{ 'DASHBOARD.LAST_ACCESS' | translate }}</span>
+                        <span class="stat-value">{{ 'DASHBOARD.TODAY' | translate }}</span>
                     </div>
                 </div>
 
@@ -81,8 +86,8 @@
                         </svg>
                     </div>
                     <div class="stat-content">
-                        <span class="stat-label">Estado</span>
-                        <span class="stat-value">Activo</span>
+                        <span class="stat-label">{{ 'DASHBOARD.STATUS' | translate }}</span>
+                        <span class="stat-value">{{ 'DASHBOARD.ACTIVE' | translate }}</span>
                     </div>
                 </div>
 
@@ -94,8 +99,8 @@
                         </svg>
                     </div>
                     <div class="stat-content">
-                        <span class="stat-label">Seguridad</span>
-                        <span class="stat-value">Verificado</span>
+                        <span class="stat-label">{{ 'DASHBOARD.SECURITY' | translate }}</span>
+                        <span class="stat-value">{{ 'DASHBOARD.VERIFIED' | translate }}</span>
                     </div>
                 </div>
             </div>
@@ -105,6 +110,6 @@
 
     <!-- Footer -->
     <footer class="dashboard-footer">
-        <p>Copyright ©login app 2025 | Privacy Policy</p>
+        <p>{{ 'LOGIN.FOOTER' | translate }}</p>
     </footer>
 </div>

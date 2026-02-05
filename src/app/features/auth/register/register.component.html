@@ -10,8 +10,8 @@
     <!-- Register Card -->
     <div class="register-card">
         <div class="register-header">
-            <h1>Create Account</h1>
-            <p>Hey, Enter your details to create your account</p>
+            <h1>{{ 'REGISTER.TITLE' | translate }}</h1>
+            <p>{{ 'REGISTER.SUBTITLE' | translate }}</p>
         </div>
 
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
@@ -42,13 +42,13 @@
             <!-- Name Field -->
             <div class="form-group">
                 <div class="input-wrapper">
-                    <input type="text" formControlName="name" placeholder="Full Name"
+                    <input type="text" formControlName="name" [placeholder]="'REGISTER.NAME_PLACEHOLDER' | translate"
                         [class.error]="name?.invalid && name?.touched" id="name-input">
                 </div>
                 @if (name?.invalid && name?.touched) {
                 <span class="error-text">
-                    @if (name?.hasError('required')) { Nombre es requerido }
-                    @else if (name?.hasError('minlength')) { Mínimo 2 caracteres }
+                    @if (name?.hasError('required')) { {{ 'REGISTER.NAME_REQUIRED' | translate }} }
+                    @else if (name?.hasError('minlength')) { {{ 'REGISTER.NAME_MINLENGTH' | translate }} }
                 </span>
                 }
             </div>
@@ -56,13 +56,13 @@
             <!-- Email Field -->
             <div class="form-group">
                 <div class="input-wrapper">
-                    <input type="email" formControlName="email" placeholder="Email Address"
+                    <input type="email" formControlName="email" [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate"
                         [class.error]="email?.invalid && email?.touched" id="email-input">
                 </div>
                 @if (email?.invalid && email?.touched) {
                 <span class="error-text">
-                    @if (email?.hasError('required')) { Email es requerido }
-                    @else if (email?.hasError('email')) { Email inválido }
+                    @if (email?.hasError('required')) { {{ 'REGISTER.EMAIL_REQUIRED' | translate }} }
+                    @else if (email?.hasError('email')) { {{ 'REGISTER.EMAIL_INVALID' | translate }} }
                 </span>
                 }
             </div>
@@ -71,16 +71,16 @@
             <div class="form-group">
                 <div class="input-wrapper">
                     <input [type]="showPassword() ? 'text' : 'password'" formControlName="password"
-                        placeholder="Password" [class.error]="password?.invalid && password?.touched"
-                        id="password-input">
+                        [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate"
+                        [class.error]="password?.invalid && password?.touched" id="password-input">
                     <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
-                        {{ showPassword() ? 'Hide' : 'Show' }}
+                        {{ (showPassword() ? 'LOGIN.HIDE' : 'LOGIN.SHOW') | translate }}
                     </button>
                 </div>
                 @if (password?.invalid && password?.touched) {
                 <span class="error-text">
-                    @if (password?.hasError('required')) { Contraseña es requerida }
-                    @else if (password?.hasError('minlength')) { Mínimo 6 caracteres }
+                    @if (password?.hasError('required')) { {{ 'REGISTER.PASSWORD_REQUIRED' | translate }} }
+                    @else if (password?.hasError('minlength')) { {{ 'REGISTER.PASSWORD_MINLENGTH' | translate }} }
                 </span>
                 }
             </div>
@@ -89,17 +89,19 @@
             <div class="form-group">
                 <div class="input-wrapper">
                     <input [type]="showConfirmPassword() ? 'text' : 'password'" formControlName="confirmPassword"
-                        placeholder="Confirm Password"
+                        [placeholder]="'REGISTER.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
                         [class.error]="confirmPassword?.invalid && confirmPassword?.touched"
                         id="confirm-password-input">
                     <button type="button" class="toggle-password" (click)="toggleConfirmPasswordVisibility()">
-                        {{ showConfirmPassword() ? 'Hide' : 'Show' }}
+                        {{ (showConfirmPassword() ? 'LOGIN.HIDE' : 'LOGIN.SHOW') | translate }}
                     </button>
                 </div>
                 @if (confirmPassword?.invalid && confirmPassword?.touched) {
                 <span class="error-text">
-                    @if (confirmPassword?.hasError('required')) { Confirme su contraseña }
-                    @else if (confirmPassword?.hasError('passwordMismatch')) { Las contraseñas no coinciden }
+                    @if (confirmPassword?.hasError('required')) { {{ 'REGISTER.CONFIRM_PASSWORD_REQUIRED' | translate }}
+                    }
+                    @else if (confirmPassword?.hasError('passwordMismatch')) { {{ 'REGISTER.PASSWORD_MISMATCH' |
+                    translate }} }
                 </span>
                 }
             </div>
@@ -108,21 +110,22 @@
             <button type="submit" class="submit-btn" [disabled]="isLoading()" id="register-submit-btn">
                 @if (isLoading()) {
                 <span class="spinner"></span>
-                Creating account...
+                {{ 'REGISTER.CREATING_ACCOUNT' | translate }}
                 } @else {
-                Create Account
+                {{ 'REGISTER.CREATE_ACCOUNT' | translate }}
                 }
             </button>
         </form>
 
         <!-- Login Link -->
         <p class="login-link">
-            Already have an account? <a routerLink="/login" id="login-link">Sign In</a>
+            {{ 'REGISTER.HAVE_ACCOUNT' | translate }} <a routerLink="/login" id="login-link">{{ 'REGISTER.SIGN_IN' |
+                translate }}</a>
         </p>
     </div>
 
     <!-- Footer -->
     <footer class="register-footer">
-        <p>Copyright ©login app 2025 | Privacy Policy</p>
+        <p>{{ 'LOGIN.FOOTER' | translate }}</p>
     </footer>
 </div>

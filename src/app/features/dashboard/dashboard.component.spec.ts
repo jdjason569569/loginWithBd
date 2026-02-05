@@ -4,6 +4,8 @@ import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { signal } from '@angular/core';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
     let fixture: ComponentFixture<DashboardComponent>;
@@ -20,7 +22,7 @@ describe('DashboardComponent', () => {
         const rSpy = jasmine.createSpyObj('Router', ['navigate']);
 
         await TestBed.configureTestingModule({
-            imports: [DashboardComponent],
+            imports: [DashboardComponent, TranslateModule.forRoot()],
             providers: [
                 { provide: AuthService, useValue: mockAuthService },
                 { provide: Router, useValue: rSpy }
@@ -43,13 +45,13 @@ describe('DashboardComponent', () => {
         const morning = new Date();
         morning.setHours(9);
         component.currentTime.set(morning);
-        expect(component.greeting()).toBe('Buenos días');
+        expect(component.greeting()).toBe('DASHBOARD.GREETING_MORNING');
 
         // Force time to Afternoon
         const afternoon = new Date();
         afternoon.setHours(15);
         component.currentTime.set(afternoon);
-        expect(component.greeting()).toBe('Buenas tardes');
+        expect(component.greeting()).toBe('DASHBOARD.GREETING_AFTERNOON');
     });
 
     it('should get initials from user name', () => {

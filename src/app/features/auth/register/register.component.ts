@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-register',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'
 })
@@ -22,7 +23,8 @@ export class RegisterComponent {
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private translate: TranslateService
     ) {
         this.registerForm = this.fb.group({
             name: ['', [Validators.required, Validators.minLength(2)]],
@@ -67,7 +69,7 @@ export class RegisterComponent {
         this.isLoading.set(false);
 
         if (response.success) {
-            this.successMessage.set('¡Registro exitoso! Por favor revisa tu email para confirmar tu cuenta.');
+            this.successMessage.set(this.translate.instant('REGISTER.SUCCESS'));
             this.registerForm.reset();
         } else {
             this.errorMessage.set(response.error || 'Error al registrar');

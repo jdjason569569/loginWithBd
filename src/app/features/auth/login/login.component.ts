@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
 })
@@ -21,7 +22,8 @@ export class LoginComponent {
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private translate: TranslateService
     ) {
         this.loginForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
@@ -41,7 +43,7 @@ export class LoginComponent {
         console.log('onSubmit called', this.loginForm.valid);
         if (this.loginForm.invalid) {
             this.loginForm.markAllAsTouched();
-            this.errorMessage.set('Por favor, completa todos los campos correctamente.');
+            this.errorMessage.set(this.translate.instant('LOGIN.ERROR_MODAL.INVALID_FORM'));
             this.showErrorModal.set(true);
             return;
         }
@@ -58,7 +60,7 @@ export class LoginComponent {
             this.router.navigate(['/dashboard']);
         } else {
             console.log('Login failed', response.error);
-            const msg = response.error || 'Credenciales inválidas o error de conexión.';
+            const msg = response.error || this.translate.instant('LOGIN.ERROR_MODAL.FALLBACK');
             this.errorMessage.set(msg);
             this.showErrorModal.set(true);
         }

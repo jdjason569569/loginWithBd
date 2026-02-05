@@ -58,6 +58,37 @@
     }
 }
 
+.lang-switcher {
+    display: flex;
+    gap: 0.25rem;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px;
+    border-radius: 8px;
+    margin-right: 0.5rem;
+}
+
+.lang-switcher button {
+    padding: 0.25rem 0.6rem;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lang-switcher button:hover {
+    color: #1a1a1a;
+}
+
+.lang-switcher button.active {
+    background: #fff;
+    color: #f0b85a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 .user-avatar {
     width: 40px;
     height: 40px;

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { RouterLink } from '@angular/router';
 import { provideRouter } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('RegisterComponent', () => {
     let component: RegisterComponent;
@@ -15,7 +16,7 @@ describe('RegisterComponent', () => {
         const authSpy = jasmine.createSpyObj('AuthService', ['signUp']);
 
         await TestBed.configureTestingModule({
-            imports: [RegisterComponent, ReactiveFormsModule, RouterLink],
+            imports: [RegisterComponent, ReactiveFormsModule, RouterLink, TranslateModule.forRoot()],
             providers: [
                 { provide: AuthService, useValue: authSpy },
                 provideRouter([])
@@ -55,7 +56,7 @@ describe('RegisterComponent', () => {
         tick();
 
         expect(authServiceSpy.signUp).toHaveBeenCalledWith('test@example.com', 'password123', 'David Test');
-        expect(component.successMessage()).toContain('Registro exitoso');
+        expect(component.successMessage()).toBe('REGISTER.SUCCESS');
     }));
 
     it('should show error on signUp failure', fakeAsync(() => {

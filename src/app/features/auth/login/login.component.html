@@ -3,17 +3,16 @@
   <div class="form-side">
     <div class="login-card">
       <div class="login-header">
-        <h1>Agent Login</h1>
-        <p>Hey, Enter your details to get sign in to your account</p>
+        <h1>{{ 'LOGIN.TITLE' | translate }}</h1>
+        <p>{{ 'LOGIN.SUBTITLE' | translate }}</p>
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
 
-
         <!-- Email Field -->
         <div class="form-group">
           <div class="input-wrapper">
-            <input type="email" formControlName="email" placeholder="Enter Email / Phone No"
+            <input type="email" formControlName="email" [placeholder]="'LOGIN.EMAIL_PLACEHOLDER' | translate"
               [class.error]="email?.invalid && email?.touched" id="email-input">
             @if (email?.valid && email?.touched) {
             <span class="input-icon valid">
@@ -26,8 +25,8 @@
           </div>
           @if (email?.invalid && email?.touched) {
           <span class="error-text">
-            @if (email?.hasError('required')) { Email es requerido }
-            @else if (email?.hasError('email')) { Email inválido }
+            @if (email?.hasError('required')) { {{ 'LOGIN.EMAIL_REQUIRED' | translate }} }
+            @else if (email?.hasError('email')) { {{ 'LOGIN.EMAIL_INVALID' | translate }} }
           </span>
           }
         </div>
@@ -35,36 +34,37 @@
         <!-- Password Field -->
         <div class="form-group">
           <div class="input-wrapper">
-            <input [type]="showPassword() ? 'text' : 'password'" formControlName="password" placeholder="Passcode"
+            <input [type]="showPassword() ? 'text' : 'password'" formControlName="password"
+              [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
               [class.error]="password?.invalid && password?.touched" id="password-input">
             <button type="button" class="toggle-password" (click)="togglePasswordVisibility()" id="toggle-password-btn">
-              {{ showPassword() ? 'Hide' : 'Show' }}
+              {{ (showPassword() ? 'LOGIN.HIDE' : 'LOGIN.SHOW') | translate }}
             </button>
           </div>
           @if (password?.invalid && password?.touched) {
           <span class="error-text">
-            @if (password?.hasError('required')) { Contraseña es requerida }
-            @else if (password?.hasError('minlength')) { Mínimo 6 caracteres }
+            @if (password?.hasError('required')) { {{ 'LOGIN.PASSWORD_REQUIRED' | translate }} }
+            @else if (password?.hasError('minlength')) { {{ 'LOGIN.PASSWORD_MINLENGTH' | translate }} }
           </span>
           }
         </div>
 
-        <a href="#" class="forgot-link">Having trouble in sign in?</a>
+        <a href="#" class="forgot-link">{{ 'LOGIN.TROUBLE' | translate }}</a>
 
         <!-- Submit Button -->
         <button type="submit" class="submit-btn" [disabled]="isLoading()" id="login-submit-btn">
           @if (isLoading()) {
           <span class="spinner"></span>
-          Signing in...
+          {{ 'LOGIN.SIGNING_IN' | translate }}
           } @else {
-          Sign in
+          {{ 'LOGIN.SIGN_IN' | translate }}
           }
         </button>
       </form>
 
       <!-- Social Login -->
       <div class="social-divider">
-        <span>Or Sign in with</span>
+        <span>{{ 'LOGIN.OR_SIGN_WITH' | translate }}</span>
       </div>
 
       <div class="social-buttons">
@@ -99,13 +99,14 @@
 
       <!-- Register Link -->
       <p class="register-link">
-        Don't have an account? <a routerLink="/register" id="register-link">Request Now</a>
+        {{ 'LOGIN.NO_ACCOUNT' | translate }} <a routerLink="/register" id="register-link">{{ 'LOGIN.REQUEST_NOW' |
+          translate }}</a>
       </p>
     </div>
 
     <!-- Footer -->
     <footer class="login-footer">
-      <p>Copyright ©login app 2025 | Privacy Policy</p>
+      <p>{{ 'LOGIN.FOOTER' | translate }}</p>
     </footer>
   </div>
 
@@ -117,9 +118,10 @@
         <img src="access-denied.png" alt="Access Denied" class="access-denied-img">
       </div>
       <div class="modal-content">
-        <h2>Acceso Denegado</h2>
+        <h2>{{ 'LOGIN.ERROR_MODAL.TITLE' | translate }}</h2>
         <p class="error-message-text">{{ errorMessage() }}</p>
-        <button class="close-modal-btn" (click)="closeErrorModal()">Entendido</button>
+        <button class="close-modal-btn" (click)="closeErrorModal()">{{ 'LOGIN.ERROR_MODAL.BUTTON' | translate
+          }}</button>
       </div>
     </div>
   </div>
