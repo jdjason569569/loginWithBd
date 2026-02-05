@@ -15,6 +15,7 @@ export class LoginComponent {
     loginForm: FormGroup;
     isLoading = signal(false);
     errorMessage = signal<string | null>(null);
+    showErrorModal = signal(false);
     showPassword = signal(false);
 
     constructor(
@@ -32,9 +33,16 @@ export class LoginComponent {
         this.showPassword.update(v => !v);
     }
 
+    closeErrorModal(): void {
+        this.showErrorModal.set(false);
+    }
+
     async onSubmit(): Promise<void> {
+        console.log('onSubmit called', this.loginForm.valid);
         if (this.loginForm.invalid) {
             this.loginForm.markAllAsTouched();
+            this.errorMessage.set('Por favor, completa todos los campos correctamente.');
+            this.showErrorModal.set(true);
             return;
         }
 
@@ -49,7 +57,10 @@ export class LoginComponent {
         if (response.success) {
             this.router.navigate(['/dashboard']);
         } else {
-            this.errorMessage.set(response.error || 'Error al iniciar sesión');
+            console.log('Login failed', response.error);
+            const msg = response.error || 'Credenciales inválidas o error de conexión.';
+            this.errorMessage.set(msg);
+            this.showErrorModal.set(true);
         }
     }
 

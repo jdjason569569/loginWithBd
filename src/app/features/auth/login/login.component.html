@@ -8,18 +8,7 @@
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <!-- Error Message -->
-        @if (errorMessage()) {
-        <div class="error-alert">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-          <span>{{ errorMessage() }}</span>
-        </div>
-        }
+
 
         <!-- Email Field -->
         <div class="form-group">
@@ -119,4 +108,20 @@
       <p>Copyright ©login app 2025 | Privacy Policy</p>
     </footer>
   </div>
+
+  <!-- Error Modal -->
+  @if (showErrorModal()) {
+  <div class="modal-overlay" (click)="closeErrorModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-icon-container">
+        <img src="access-denied.png" alt="Access Denied" class="access-denied-img">
+      </div>
+      <div class="modal-content">
+        <h2>Acceso Denegado</h2>
+        <p class="error-message-text">{{ errorMessage() }}</p>
+        <button class="close-modal-btn" (click)="closeErrorModal()">Entendido</button>
+      </div>
+    </div>
+  </div>
+  }
 </div>
